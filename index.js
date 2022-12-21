@@ -68,6 +68,18 @@ async function run() {
 			});
 		});
 
+		app.patch('/info/:id', async (req, res) => {
+			const id = req.params.id;
+			const info = req.body;
+			const filter = { _id: ObjectId(id) };
+			const updatedDoc = {
+				$set: info,
+			};
+
+			const result = await infoCollection.updateOne(filter, updatedDoc);
+			res.send(result);
+		});
+
 		app.delete('/info/:id', async (req, res) => {
 			const id = req.params.id;
 			const filter = { _id: ObjectId(id) };
