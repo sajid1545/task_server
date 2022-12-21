@@ -47,8 +47,8 @@ async function run() {
 			});
 
 			const mailOptions = {
-				from: 'hello@example.com',
-				to: 'sajjadabdullah9962@gmail.com',
+				from: 'clashking1545@gmail.com',
+				to: 'info@redpositive.in',
 				subject: 'Redpositive Service Task',
 				text: `
                 Email - ${info.Email}
@@ -66,6 +66,13 @@ async function run() {
 					// do something useful
 				}
 			});
+		});
+
+		app.delete('/info/:id', async (req, res) => {
+			const id = req.params.id;
+			const filter = { _id: ObjectId(id) };
+			const result = await infoCollection.deleteOne(filter);
+			res.send(result);
 		});
 	} finally {
 	}
